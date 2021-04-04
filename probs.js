@@ -20,3 +20,15 @@ function runningSum(nums) {
     };
     return nums
 };
+
+//Defang IP address. I: "1.1.1.1" O: "1[.]1[.]1[.]1".
+
+function defangIPaddr(address, str="") {
+    if(!address.length) return str;
+    str += address[0] === "." ? "[.]" : address[0];
+    return defangIPaddr(address.slice(1), str);
+};
+
+function defangIPaddr(address) {
+    return address.replaceAll(".", "[.]");
+};
