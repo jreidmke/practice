@@ -32,3 +32,28 @@ function defangIPaddr(address, str="") {
 function defangIPaddr(address) {
     return address.replaceAll(".", "[.]");
 };
+
+//Maximum Wealth. Input: accounts = [[1,5],[7,3],[3,5]]
+// Output: 10
+// Explanation: 
+// 1st customer has wealth = 6
+// 2nd customer has wealth = 10 
+// 3rd customer has wealth = 8
+// The 2nd customer is the richest with a wealth of 10.
+
+function maximumWealth(accounts) {
+    let men = {};
+    for(let [i, money] of accounts.entries()) {
+        men[i] = money.reduce((a, b) => a + b);
+    };
+    return Object.values(men).reduce((a, b) => Math.max(a, b));
+};
+
+function maximumWealth(accounts) {
+    let max = 0;
+    for(let a of accounts) {
+        let total = a.reduce((a, b) => a + b);
+        if(max < total) max = total;
+    };
+    return max;
+};
