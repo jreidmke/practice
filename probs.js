@@ -93,3 +93,27 @@ function shuffle(nums, n) {
     }
     return nums.slice(0, len)
 }
+
+// Input: nums = [1,2,3,1,1,3]
+// Output: 4
+// Explanation: There are 4 good pairs (0,3), (0,4), (3,4), (2,5) 0-indexed.
+
+function numIdenticalPairs(nums) {
+    let obj = {};
+    let count = 0;
+    for(let i = 0; i < nums.length; i++) {
+        obj[nums[i]] ? obj[nums[i]].push(i) : obj[nums[i]] = [i];
+    };
+    let arr = Object.values(obj).map(a => Math.floor(((a.length) * (a.length - 1)) / 2));
+    return arr.reduce((a, b) => a + b);
+};
+
+function numIdenticalPairs(nums) {
+    let count = 0;
+    for(let i = 0; i < nums.length; i++) {
+        for(let j=i; j < nums.length; j++) {
+            if(nums[i] === nums[j] && i < j) count++;
+        };
+    };
+    return count;
+};
