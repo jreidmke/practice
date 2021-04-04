@@ -50,7 +50,7 @@ function maximumWealth(accounts) {
 };
 
 function maximumWealth(accounts) {
-    let max = 0;
+    let max = Number.NEGATIVE_INFINITY;
     for(let a of accounts) {
         let total = a.reduce((a, b) => a + b);
         if(max < total) max = total;
@@ -70,3 +70,26 @@ function maximumWealth(accounts) {
 function kidsWithCandies(candies, extraCandies) {
     return candies.map(c => c + extraCandies >= Math.max(...candies) ? true : false)
 };
+
+// Input: nums = [2,5,1,3,4,7], n = 3
+// Output: [2,3,5,4,1,7] 
+// Explanation: Since x1=2, x2=5, x3=1, y1=3, y2=4, y3=7 then the answer is [2,3,5,4,1,7].
+
+function shuffle(nums, n) {
+    let arr = [];
+    for(let i = 0; i < nums.length / 2; i++) {
+        arr.push(nums.slice(0, n)[i]);
+        arr.push(nums.slice(n)[i])
+    };
+    return arr;
+}
+
+function shuffle(nums, n) {
+    let idx = 1;
+    let len = nums.length;
+    for(let num of nums.slice(n)) {
+        nums.splice(idx, 0, num);
+        idx += 2;
+    }
+    return nums.slice(0, len)
+}
