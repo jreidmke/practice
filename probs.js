@@ -188,6 +188,50 @@ function majorityElement(nums) {
     return major;
 }
 
+//Anagrams
+//First one is bad. But lets check out charcode. Ok, charcode doesn't work for my plan but the 2nd solution is cool too. 
+
+function anagram(s, t) {
+    if(s.length != t.length) return false;
+    s = s.split('').sort() 
+    t = t.split('').sort();
+    for(let i = 0; i < s.length; i++) {
+        if(s[i] != t[i]) return false;
+    };
+    return true;
+}
+
+function isAnagram(s, t) {
+    const obj = {};
+    s.split('').map(c => obj[c] = obj[c] ? obj[c] + 1 : 1);
+    t.split('').map(c => obj[c] = obj[c] ? obj[c] - 1 : -1);
+    console.log(obj)
+    return Object.keys(obj).every(k => obj[k] === 0);
+}
+
+//Move Zeros to end of array => [0,1,0,3,12] = [1, 3, 12, 0, 0]
+//This one was easy but leetcode doesn't allow .flat(), spread or any thing else that's cool so this solution works
+
+function moveZeroes(nums) {
+    var idx = 0;
+    for (var i = 0; i < nums.length; i++) {
+      if (nums[i] !== 0) {
+        nums[idx] = nums[i];
+        nums[i] = idx === i ? nums[i] : 0;
+        idx++;
+      }
+    }
+  }
+//this below works in the real world but not in leet code
+  function moveZeroes(nums) {
+    let count = 0
+    let arr = []
+    for(let i = 0; i < nums.length; i++) {
+        !nums[i] ? count++ : arr.push(nums[i])
+    };
+    arr.push(...new Array(count).fill(0));
+    return arr
+};
 
 
 /**Come Back Not Done Trouble Hard Incomplete */
@@ -246,4 +290,20 @@ var sortedArrayToBST = function(nums) {
     root.right = sortedArrayToBST(nums.slice(mid + 1));
     
     return root;
+};
+
+//MAX PROFIT PROBLEM => https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
+//These are tricky and I need to keep looking at them
+
+function maxProfit(prices) {
+    let profit = 0;
+
+    for(let i = 1; i < prices.length; i++) {
+        let prev = prices[i - 1];
+        let curr = prices[i]
+        if(prev < curr) {
+            profit += curr - prev;
+        };
+    };
+    return profit;
 };
