@@ -134,3 +134,11 @@ var maxDepth = function(root) {
 var singleNumber = function(nums) {
     return nums.filter(n => nums.indexOf(n) === nums.lastIndexOf(n))[0];
 };
+
+//Lol. Top post on discus: Why LeetCode accepted such stupid question?
+//Remove node from linked list without head
+var deleteNode = function(node) {
+    node.val = node.next.val;
+    node.next = node.next.next;
+};
+
