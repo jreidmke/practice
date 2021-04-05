@@ -117,3 +117,20 @@ function numIdenticalPairs(nums) {
     };
     return count;
 };
+
+//Max Depth of Bi Tree
+// Input: root = [3,9,20,null,null,15,7]
+// Output: 3
+
+var maxDepth = function(root) {
+    if(!root) return 0;
+    return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
+};
+
+// Return non-repeating number
+// Input: nums = [2,2,1]
+// Output: 1
+
+var singleNumber = function(nums) {
+    return nums.filter(n => nums.indexOf(n) === nums.lastIndexOf(n))[0];
+};
