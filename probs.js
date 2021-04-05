@@ -163,6 +163,31 @@ var fizzBuzz = function(n) {
 
 fizzBuzz(15)
 
+//Find the majority element in an array with Nums length. 
+//Check out the 2nd solution. It's based on this https://www.cs.utexas.edu/~moore/best-ideas/mjrty/
+//And it's absolutely gorgeous
+
+function majorityElement(nums) {
+    nums.sort()
+    return nums[Math.floor(nums.length / 2)]
+}
+
+function majorityElement(nums) {
+    let major = nums[0];
+    let count = 1;
+    for(let i = 1; i < nums.length; i++) {
+        if(!count) {
+            count++;
+            major=nums[i];
+        } else if(major===nums[i]) {
+            count++;
+        } else {
+            count--;
+        };
+    };
+    return major;
+}
+
 
 
 /**Come Back Not Done Trouble Hard Incomplete */
@@ -208,3 +233,17 @@ function helper(nums, low, hi) {
     newNode.right = helper(nums, mid + 1, hi);
     return newNode;
 }
+
+//Other version of above
+var sortedArrayToBST = function(nums) {
+    if (!nums.length) return null;
+    
+    const mid = Math.floor(nums.length / 2);
+    const root = new TreeNode(nums[mid]);
+    
+    // subtrees are BSTs as well
+    root.left = sortedArrayToBST(nums.slice(0, mid));
+    root.right = sortedArrayToBST(nums.slice(mid + 1));
+    
+    return root;
+};
