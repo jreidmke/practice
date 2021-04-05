@@ -142,3 +142,40 @@ var deleteNode = function(node) {
     node.next = node.next.next;
 };
 
+//FizzBuzz. It's a class. Recurrsive. 
+function fizzBuzz(n, arr = []) {
+    if(!n) return arr.reverse();
+    if(n % 5 === 0 && n % 3 === 0) {
+        arr.push("FizzBuzz");  
+    } else if(n % 3 === 0) {
+        arr.push("Fizz")
+    } else if(n % 5=== 0) {
+        arr.push("Buzz")
+    } else {
+        arr.push(n)
+    };
+    return fizzBuzz(n-1, arr);
+};
+
+fizzBuzz(15)
+
+
+
+/**Come Back Not Done Trouble Hard Incomplete */
+
+//Reverse a Linked List
+//Different than array!!!!
+// Input: head = [1,2,3,4,5]
+// Output: [5,4,3,2,1]
+var reverseList = function(head) {
+    let prev = null;
+    let curr = head;
+    let next = head;
+    while(curr) {
+        next = next.next;
+        curr.next = prev;
+        prev = curr;
+        curr = next;
+    };
+    return prev;
+};
