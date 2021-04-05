@@ -157,13 +157,17 @@ function fizzBuzz(n, arr = []) {
     return fizzBuzz(n-1, arr);
 };
 
+var fizzBuzz = function(n) {
+    return new Array(n).fill(0).map((a, i) => (++i % 3 ? '' : 'Fizz') + (i % 5 ? '' : 'Buzz') || '' + i);
+};
+
 fizzBuzz(15)
 
 
 
 /**Come Back Not Done Trouble Hard Incomplete */
 
-//Reverse a Linked List
+//Reverse a Linked List => https://medium.com/outco/reversing-a-linked-list-easy-as-1-2-3-560fbffe2088
 //Different than array!!!!
 // Input: head = [1,2,3,4,5]
 // Output: [5,4,3,2,1]
@@ -179,3 +183,28 @@ var reverseList = function(head) {
     };
     return prev;
 };
+
+//CONVERT SORTED ARRAY TO BST => Good Article: https://medium.com/@harycane/convert-sorted-array-to-bst-35781e940ca5
+// Input: nums = [-10,-3,0,5,9]
+// Output: [0,-3,9,-10,null,5]
+// Explanation: [0,-10,5,null,-3,null,9] is also accepted:
+// Given an integer array nums where the elements are sorted in ascending order, convert it to a height-balanced binary search tree.
+
+// A height-balanced binary tree is a binary tree in which the depth of the two subtrees of every node never differs by more than one.
+var sortedArrayToBST = function(nums) {
+    return helper(nums, 0, nums.length - 1);
+};
+
+function helper(nums, low, hi) {
+    if(low > hi) {
+        return null;
+    };
+    
+    let mid = Math.floor((low + hi)  / 2);
+    
+    let newNode = new TreeNode(nums[mid]);
+    
+    newNode.left = helper(nums, low, mid - 1);
+    newNode.right = helper(nums, mid + 1, hi);
+    return newNode;
+}
