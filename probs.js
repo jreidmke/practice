@@ -234,6 +234,23 @@ function moveZeroes(nums) {
     return arr
 };
 
+//Palindrome
+var isPalindrome = function(s) {
+    var regex = /[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~ ]/g;
+    s = s.replace(regex, "").toLowerCase();
+    let left = 0;
+    let right = s.length - 1;
+    while(left < right) {
+        if(s[left] != s[right]) {
+            return false;
+        } else {
+            left++
+            right--
+        }
+    };
+    return true
+};
+
 //Convert roman Roman to intergers int
 
 const conversions = {
@@ -434,5 +451,18 @@ function dfs(letters, state, used, res) {
         dfs(letters, state, used, res);
         state.pop();
         used[i] = false;
+    }
+};
+
+//Merge Two Lists
+
+var mergeTwoLists = function(l1, l2) {
+    if(!l1 || !l2) return (l1 ? l1 : l2);
+    if(l1.val < l2.val) {
+        l1.next = mergeTwoLists(l1.next, l2);
+        return l1
+    } else {
+        l2.next = mergeTwoLists(l1, l2.next);
+        return l2
     }
 };
