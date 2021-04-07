@@ -299,6 +299,20 @@ function plusOne(digits, lastDigit=digits[digits.length-1]) {
 
 plusOne([9])
 
+//power of 3
+function isPowerOfThree(n) {
+    let base = 1;
+    let power = 3;
+    while(true) {
+        if(base < n) {
+            base *= power
+        } else if(base > n) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+}
 
 /**Come Back Not Done Trouble Hard Incomplete */
 
