@@ -334,3 +334,26 @@ function dfs(root, path, res) {
         }
     }
 }
+
+//Permutations of a letter
+function permutations(letters) {
+    let res = [];
+    dfs(letters, [], Array(letters.length).fill(false), res);
+    return res;
+}
+
+function dfs(letters, state, used, res) {
+    if(state.length===letters.length) {
+        res.push(Array.from(state));
+        return;
+    };
+    for(let i = 0; i < letters.length; i++) {
+        if(used[i]) continue;
+        
+        state.push(letters[i]);
+        used[i] = true;
+        dfs(letters, state, used, res);
+        state.pop();
+        used[i] = false;
+    }
+};
