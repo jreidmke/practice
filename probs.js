@@ -255,6 +255,35 @@ function romanToInt(s) {
 }
 
 
+function containsDuplicate(arr, idx=0, memo={}) {
+    if(idx===arr.length) return false;
+    if(arr[idx] in memo) return true;
+    memo[arr[idx]] = true;
+    return containsDuplicate(arr, idx + 1, memo);
+}
+
+var containsDuplicate = function(nums) {
+    return nums.some(x => nums.indexOf(x)!==nums.lastIndexOf(x));
+};
+
+//Find missing number from range
+
+function missingNumber(nums) {
+    nums.sort((a, b) => a - b);
+    for(let i = 0; i < nums.length; i++) {
+        if(i !== nums[i]) return i;
+    };
+    return nums.length
+};
+
+//Best stairclimb solution stairs climb climbing stairs the stairs
+
+function climbStairs(n, memo={1: 1, 2: 2}) {
+    if(memo[n] !== undefined) return memo[n];
+    memo[n] = climbStairs(n - 1, memo) + climbStairs(n - 2, memo);
+    return memo[n]
+};
+
 /**Come Back Not Done Trouble Hard Incomplete */
 
 //Reverse a Linked List => https://medium.com/outco/reversing-a-linked-list-easy-as-1-2-3-560fbffe2088
