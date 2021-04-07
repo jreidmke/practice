@@ -251,6 +251,17 @@ var isPalindrome = function(s) {
     return true
 };
 
+//longest common prefix
+
+function longestCommonPrefix(strs, idx=0, pre=strs[0].slice(0, idx)) {
+    if(strs.every(s => s.startsWith(pre))) {
+        return longestCommonPrefix(strs, idx + 1)
+    };
+    return pre.slice(0, idx - 1);
+}
+
+longestCommonPrefix(["flower","flow","flight"])
+
 //Convert roman Roman to intergers int
 
 const conversions = {
