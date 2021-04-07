@@ -222,6 +222,7 @@ function moveZeroes(nums) {
       }
     }
   }
+
 //this below works in the real world but not in leet code
   function moveZeroes(nums) {
     let count = 0
@@ -307,3 +308,29 @@ function maxProfit(prices) {
     };
     return profit;
 };
+
+//Hmmmmm. Ternary Tree Paths => https://algo.monster/problems/dfs_with_states
+function ternary_tree_paths(root) {
+    let res = [];
+    if (root) dfs(root, [], res);
+    return res;
+}
+
+function dfs(root, path, res) {
+    // exit condition, reached leaf node, append paths to results
+    if (root.children.every(child => !child)) {
+        path.push(root.val);
+        const cur_path = path.join('->');
+        res.push(cur_path);
+        path.pop();
+        return;
+    }
+    // dfs on each non-null child
+    for (let child of root.children) {
+        if (child) {
+            path.push(root.val);
+            dfs(child, path, res);
+            path.pop();
+        }
+    }
+}
