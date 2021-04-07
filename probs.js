@@ -251,7 +251,18 @@ var isPalindrome = function(s) {
     return true
 };
 
+//reverse an integer
+
+function reverseInt(int) {
+    let s = parseInt(int.toString().split('').reverse().join(''));
+    if(int < 0) s = s - (s * 2)
+    return s;
+};
+
+reverseInt(-123)
+
 //longest common prefix
+
 
 function longestCommonPrefix(strs, idx=0, pre=strs[0].slice(0, idx)) {
     if(strs.every(s => s.startsWith(pre))) {
