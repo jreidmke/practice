@@ -577,7 +577,22 @@ const KEYBOARD = {
     return generate(numRows, tri);
 };
 
+function pascal(numRows) {
+    let tri = [];
+    //each time we loop through, we push in a new arr with +1 length into our base
+    //the contents of this arr will always be arr[i - 1][i-1] + arr[i - 1][i]
+    for(let i = 0; i < numRows; i++) {
+        tri[i] = []
+        tri[i][0] = 1;
+        for(let j = 1; j < i; j++) {
+            tri[i][j] = tri[i - 1][j - 1] + tri[i - 1][j]
+        };
+        tri[i][i] = 1;
+    };
+    return tri;
+};
 
+pascal(5)
 
 
 /**Come Back Not Done Trouble Hard Incomplete */
