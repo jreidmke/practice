@@ -490,7 +490,7 @@ function permutations(letters) {
 
 function dfs(letters, path, res, used) {
     if(path.length == letters.length) {
-        res.push(Array.from(path)); <==== //WHY
+        res.push(Array.from(path)); //<==== //WHY
         return;
     };
     for(let i = 0; i < letters.length; i++) {
@@ -503,10 +503,66 @@ function dfs(letters, path, res, used) {
     };
 };
 
+function permutations(letters) {
+    let response = [];
+    dfs(letters, [], response, Array(letters.length).fill(false));
+    return response;
+};
+
+function dfs(letters, path, res, used) {
+    //return path to res
+    if(letters.length === path.length) {
+        res.push(Array.from(path));
+        return;
+    }
+    //create path
+    for(let i = 0; i < letters.length; i++) {
+        //check if letters[i] used
+        if(used[i]) continue;
+        //if not used, add to path, set used to true
+        path.push(letters[i]);
+        used[i] = true;
+        dfs(letters, path, res, used);
+        path.pop();
+        used[i] = false;
+    };
+};
+
 permutations(['a', 'b', 'c', 'd', 'e'])
 
 
-
+const KEYBOARD = {
+    '2': 'abc',
+    '3': 'def',
+    '4': 'ghi',
+    '5': 'jkl',
+    '6': 'mno',
+    '7': 'pqrs',
+    '8': 'tuv',
+    '9': 'wxyz',
+  };
+  
+  function letterCombinationsOfPhoneNumber(digits) {
+      let res = [];
+      dfs(digits, [], res);
+      return res;
+  };
+  
+  function dfs(digits, path, res) {
+      //create res
+      if(digits.length === path.length) {
+          res.push(path.join(''));
+          return;
+      }
+      //create path
+      let next = digits.charAt(path.length);
+      for(let l of KEYBOARD[next]) {
+          path.push(l);
+          dfs(digits, path, res);
+          path.pop();
+      }
+  }
+  
 
 
 
