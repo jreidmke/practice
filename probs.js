@@ -576,3 +576,37 @@ var mergeTwoLists = function(l1, l2) {
         return l2
     }
 };
+
+//Serialize and deserialize a binary tree
+
+function serialize(root) {
+    let res = [];
+    dfsS(root, res);
+    return res.join('');
+}
+
+function dfsS(node, res) {
+    if(!node) {
+        res.push('x');
+        return
+    }; 
+    res.push(node.val);
+    dfsS(node.left, res);
+    dfsS(node.right, res);
+};
+
+function deserialize(s) {
+    return dfsD(s.split(' '));
+}
+
+function dfsD(nodes) {
+    let next = nodes.shift();
+    if(!next || next==="x") {
+        return
+    } else {
+        let cur = new Node(next);
+        cur.left = dfsD(nodes);
+        cur.right = dfsD(nodes);
+        return cur;
+    };
+};
