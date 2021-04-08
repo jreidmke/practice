@@ -209,6 +209,61 @@ function isAnagram(s, t) {
     return Object.keys(obj).every(k => obj[k] === 0);
 }
 
+//Find min in rotated array
+
+function findMinRotated(arr) {
+    let left = 0;
+    let right = arr.length - 1;
+    let idx;
+    let count = 0;
+    while(left <= right && count < 10) {
+        let mid = Math.floor((left + right) / 2);
+        if(arr[mid] > arr[arr.length - 1]) {
+            left = mid + 1;
+        } else {
+            idx = mid;
+            right = mid - 1;
+        };
+        
+
+        count++;
+    };
+    return idx;
+}
+function findMinRotated(arr) {
+    let left = 0;
+    let right = arr.length - 1;
+    let idx;
+    while(left <= right) {
+        let mid = Math.floor((left + right) / 2);
+        let last = arr[right];
+        if(arr[mid] <= last) {
+            idx = mid;  
+            right = mid - 1;
+        } else {
+            left = mid + 1;
+        }
+    };
+    return idx;
+}
+function findMinRotated(arr) {
+    // WRITE YOUR BRILLIANT CODE HERE
+    let left = 0;
+    let right = arr.length - 1;
+    let boundary_index = -1;
+    while (left <= right) {
+        let mid = left + Math.trunc((right - left) / 2);
+        // if <= last element, then belongs to lower half
+        if (arr[mid] <= arr[arr.length - 1]) {
+            boundary_index = mid;
+            right = mid - 1;
+        } else {
+            left = mid + 1;
+        }
+    }
+    return boundary_index;
+}
+
 //Move Zeros to end of array => [0,1,0,3,12] = [1, 3, 12, 0, 0]
 //This one was easy but leetcode doesn't allow .flat(), spread or any thing else that's cool so this solution works
 
