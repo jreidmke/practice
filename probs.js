@@ -281,6 +281,22 @@ function peakOfMountainArray(arr) {
     return idx;
 }
 
+function peakOfMountainArray(arr) {
+    let left = 0;
+    let right = arr.length - 1;
+    let idx;
+    while(left <= right) {
+        let mid = Math.floor((left + right) / 2);
+        if(arr[mid] > arr[mid + 1]) {
+            idx = mid;
+            right = mid - 1;
+        } else {
+            left = mid + 1;
+        };
+    };
+    return idx;
+}
+
 //Move Zeros to end of array => [0,1,0,3,12] = [1, 3, 12, 0, 0]
 //This one was easy but leetcode doesn't allow .flat(), spread or any thing else that's cool so this solution works
 
