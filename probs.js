@@ -608,6 +608,24 @@ function isHappy(n) {
     while(1) {
         //i wanna split the number
         //do the op square + square
+        n = n.toString().split('').reduce((a, b) => parseInt(a) + parseInt(Math.pow(b, 2)), 0)
+        if(n === 1) return true;
+        //check if result is 1. if it is, return true
+        //take result of that, check if its in seen.
+        if(seen.has(n)) return false;
+        seen.add(n)
+        //if it is, return false
+        //if its not, keep operating
+        //store the number in set
+    }
+}
+
+function isHappy(n) {
+    let seen = new Set();
+    let count = 0;
+    while(1) {
+        //i wanna split the number
+        //do the op square + square
         n = n.toString().split('').reduce((a, b) => parseInt(a ** 2) + parseInt(b ** 2))
         if(n === 1) return true;
         //check if result is 1. if it is, return true
@@ -619,6 +637,11 @@ function isHappy(n) {
         //store the number in set
     }
 }
+
+var inorderTraversal = function(root) {
+    if(!root) return [];
+    return [...inorderTraversal(root.left), root.val, ...inorderTraversal(root.right)]
+};
 
 
 /**Come Back Not Done Trouble Hard Incomplete */
