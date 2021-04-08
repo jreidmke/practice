@@ -455,6 +455,43 @@ function isPowerOfThree(n) {
     }
 }
 
+//Print all ternary tree paths
+function ternary_tree_paths(root) {
+    let res = [];
+    if(root) dfs(root, [], res)
+    return res;
+};
+
+function dfs(node, path, res) {
+    if(node.children.every(c => !c)) {
+        path.push(node.val);
+        res.push(path.join('->'));
+        path.pop();
+        return;
+    };
+    
+    //children
+    for(let c of node.children) {
+        if(c) {
+            path.push(node.val);
+            dfs(c, path, res);
+            path.pop();
+        };
+    };
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**Come Back Not Done Trouble Hard Incomplete */
 
 //Reverse a Linked List => https://medium.com/outco/reversing-a-linked-list-easy-as-1-2-3-560fbffe2088
