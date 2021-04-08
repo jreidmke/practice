@@ -480,9 +480,30 @@ function dfs(node, path, res) {
     };
 };
 
+//Permutations
 
+function permutations(letters) {
+    let res = [];
+    dfs(letters, [], res, Array(letters.length).fill(false));
+    return res;
+};
 
+function dfs(letters, path, res, used) {
+    if(path.length == letters.length) {
+        res.push(Array.from(path)); <==== //WHY
+        return;
+    };
+    for(let i = 0; i < letters.length; i++) {
+        if(used[i]) continue;
+        path.push(letters[i]);
+        used[i] = true;
+        dfs(letters, path, res, used);
+        path.pop();
+        used[i] = false;
+    };
+};
 
+permutations(['a', 'b', 'c', 'd', 'e'])
 
 
 
