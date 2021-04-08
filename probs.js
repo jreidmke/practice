@@ -595,6 +595,32 @@ function pascal(numRows) {
 pascal(5)
 
 
+//hamming weight
+var hammingWeight = function(n) {
+    return n.toString(2).replace(/0/g, '').length 
+};
+
+//happy number
+
+function isHappy(n) {
+    let seen = new Set();
+    let count = 0;
+    while(1) {
+        //i wanna split the number
+        //do the op square + square
+        n = n.toString().split('').reduce((a, b) => parseInt(a ** 2) + parseInt(b ** 2))
+        if(n === 1) return true;
+        //check if result is 1. if it is, return true
+        //take result of that, check if its in seen.
+        if(seen.has(n)) return false;
+        seen.add(n)
+        //if it is, return false
+        //if its not, keep operating
+        //store the number in set
+    }
+}
+
+
 /**Come Back Not Done Trouble Hard Incomplete */
 
 //Reverse a Linked List => https://medium.com/outco/reversing-a-linked-list-easy-as-1-2-3-560fbffe2088
