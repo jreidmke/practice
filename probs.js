@@ -643,6 +643,20 @@ var inorderTraversal = function(root) {
     return [...inorderTraversal(root.left), root.val, ...inorderTraversal(root.right)]
 };
 
+//Symmetric tree
+
+var isSymmetric = function(root) {
+    if(root===null) return true;
+    return check(root.left, root.right)
+};
+
+function check(left, right) {
+    if(left==null && right==null) return true;
+    if(left==null || right==null) return false;
+    if(left.val !== right.val) return false;
+    return check(left.left, right.right) && check(left.right, right.left)
+}
+
 
 /**Come Back Not Done Trouble Hard Incomplete */
 
