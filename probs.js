@@ -643,19 +643,7 @@ var inorderTraversal = function(root) {
     return [...inorderTraversal(root.left), root.val, ...inorderTraversal(root.right)]
 };
 
-//Symmetric tree
 
-var isSymmetric = function(root) {
-    if(root===null) return true;
-    return check(root.left, root.right)
-};
-
-function check(left, right) {
-    if(left==null && right==null) return true;
-    if(left==null || right==null) return false;
-    if(left.val !== right.val) return false;
-    return check(left.left, right.right) && check(left.right, right.left)
-}
 
 
 /**Come Back Not Done Trouble Hard Incomplete */
@@ -827,3 +815,33 @@ function dfsD(nodes) {
         return cur;
     };
 };
+
+//Symmetric tree
+
+var isSymmetric = function(root) {
+    if(root===null) return true;
+    return check(root.left, root.right)
+};
+
+function check(left, right) {
+    if(left==null && right==null) return true;
+    if(left==null || right==null) return false;
+    if(left.val !== right.val) return false;
+    return check(left.left, right.right) && check(left.right, right.left)
+}
+
+//Merge two sorted arrays
+
+var merge = function(nums1, m, nums2, n) {
+    let idx1 = m - 1;
+    let idx2 = n - 1;
+    let idx3 = m + n - 1;
+    while (idx2 >= 0) {
+        
+      nums1[idx3--] = nums1[idx1] > nums2[idx2]
+        ? nums1[idx1--]
+        : nums2[idx2--];
+        console.log(nums1)
+    }
+    return nums1
+  };
