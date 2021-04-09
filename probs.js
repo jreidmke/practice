@@ -857,3 +857,79 @@ var merge = function(nums1, m, nums2, n) {
     };
     return currA;
 };
+
+//COUNT PRIMES my solution
+
+function countPrimes(n) {
+    let count = 0;
+    while(n > 2) {       
+        count += primeCheck(--n)
+    };
+    return count;
+};
+
+function primeCheck(n) {
+    for(let i = 2; i <= n / 2; i++) {
+        if(n % i === 0) return 0;
+    };
+    return 1;
+}
+
+
+//THe solution that doesn't time out.
+
+var countPrimes = function(n) {
+    let hash = new Array(n).fill(true);
+    hash[0] = false;
+    hash[1] = false;
+    for (let i=2;i*i<n;i++) {
+        if (hash[i]) {
+            for(let j=i*i;j<n;j+=i){ // p*(p+1)...
+                hash[j] = false;
+            }
+        }
+    }
+    return hash.filter((val)=>val).length;
+};
+
+
+
+function trailingZeroes(n) {
+    let arr = factorial(n).toString().split('')
+    let left = 0;
+    let right = arr.length - 1;
+    let count = 0;
+    while(arr[right]==0 && left < right) {
+        count++;
+        right--;
+    }
+    return count;
+}
+
+function factorial(n) {
+    if(n < 2) return n;
+    return n * factorial(n - 1)
+};
+
+function trailingZeroes(n) {
+    let count = 0;
+    for(let i = 5; i <= n; i *= 5) {
+        count += Math.floor(n / i)
+    };
+    return count;
+}
+
+function productExceptSelf(arr) {
+    let output = [];
+    let lMult = 1;
+    let rMult = 1;
+    for(let i = arr.length - 1; i >= 0; i--) {
+        output[i] = rMult;
+        rMult *= arr[i]
+    };
+    for(let j = 0; j < arr.length; j++) {
+        output[j] *= lMult;
+        lMult *= arr[j]
+    }
+    return output;
+}
