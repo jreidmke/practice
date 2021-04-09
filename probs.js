@@ -933,3 +933,17 @@ function productExceptSelf(arr) {
     }
     return output;
 }
+
+function shuffle(arr) {
+    let newArr = Array(arr.length);
+    let used = new Set();
+    let curr = 0;
+    while(curr < arr.length) {
+        let idx = Math.floor(Math.random() * arr.length);
+        if(used.has(idx)) continue;
+        used.add(idx)
+        newArr[idx] = arr[curr];
+        curr++;
+    };
+    return newArr;
+};
