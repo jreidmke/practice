@@ -530,6 +530,40 @@ function dfs(letters, path, res, used) {
 
 permutations(['a', 'b', 'c', 'd', 'e'])
 
+//Palindrome partition
+
+function partition(s) {
+    let res = [];
+    permutations(s, [], res);
+    return res
+};
+
+function isPalindrome(s) {
+    let l = 0;
+    let r = s.length - 1;
+    while(l < r) {
+        if(s[l]!==s[r])return false;
+        l++;
+        r--;
+    };
+    return true;
+};
+
+function permutations(s, path, res) {
+    //push to res
+    if(!s.length) {
+        res.push(path);
+        return;
+    };
+    //push to path
+    for(let i = 1; i < s.length; i++) {
+        let subStr = s.slice(0, i);
+        if(isPalindrome(subStr)) {
+            permutations(s.slice(i), [...path, subStr], res);    
+        };
+    };
+};
+
 
 const KEYBOARD = {
     '2': 'abc',
