@@ -566,6 +566,24 @@ function permutations(nums, path, idx, res) {
     return;
 };
 
+//subset other version
+
+function subsets(nums) {
+    let n = nums.length;
+    let res = [];
+    function dfs(i, path) {
+        if(i === nums.length) {
+            res.push(path);
+            return;
+        };
+        dfs(i + 1, [...path, nums[i]]);
+        dfs(i + 1, [...path]);
+    };
+
+    dfs(0, []);
+    return res
+}
+
 //Combination sum
 
 function combinationSum(candidates, target) {
