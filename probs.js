@@ -584,6 +584,24 @@ function subsets(nums) {
     return res
 }
 
+//final subset version
+
+function subsets(nums) {
+    let res = [];
+    makeSubsets(nums, [], res, 0);
+    return res;
+};
+
+function makeSubsets(nums, path, res, idx) {
+    if(idx===nums.length) {
+        res.push(path);
+        return;
+    };
+    makeSubsets(nums, [...path, nums[idx]], res, idx + 1);
+    makeSubsets(nums, [...path], res, idx + 1);    
+};
+
+
 //Combination sum
 
 function combinationSum(candidates, target) {
