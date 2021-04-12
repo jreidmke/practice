@@ -740,6 +740,24 @@ function zigZagTraversal(node) {
     return res;
 };
 
+//BInary furthest right
+
+function binary_tree_right_side_view(node) {
+    let res = [];
+    let q = [node];
+    while(q.length) {
+        const n = q.length;
+        res.push(q[0]);
+        for(let i = 0; i < n; i++) {
+            const newNode = q.shift();
+            for(let c of [newNode.right, newNode.left]) {
+                if(c) q.push(c);
+            }
+        }
+    };
+    return res;
+}
+
 
   
 //pascal triangle
