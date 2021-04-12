@@ -549,6 +549,35 @@ function isPalindrome(s) {
     return true;
 };
 
+
+//Combination sum
+
+function combinationSum(candidates, target) {
+    //we'll need a path, res, index and sum
+    let res = [];
+    permutations(candidates, target, [], res, 0, 0);
+    return res;
+};
+
+function permutations(candidates, target, path, res, idx, sum) {
+    //check to see if greater than sum, return nothing
+    if(sum > target) return;
+    //check to see if equal sum, push path to res, return
+    if(sum === target) {
+        res.push(Array.from(path));
+        return;
+    }
+    //loop thru candiates
+    //recurssively call permute on results, adding curr index can to sum;
+    for(let i = idx; i < candidates.length; i++) {
+        path.push(candidates[i]);
+        permutations(candidates, target, path, res, i, sum + candidates[i]);
+        path.pop();
+    }    
+};
+
+
+
 function permutations(s, path, res) {
     //push to res
     if(!s.length) {
