@@ -698,6 +698,49 @@ const KEYBOARD = {
           path.pop();
       }
   }
+
+//BFS
+
+  function levelOrderTraversal(root) {
+    let res = [];
+    let queue = [root];
+    while(queue.length > 0) {
+        const n = queue.length;
+        let path = [];
+        for(let i = 0; i < n; i++) {
+            const node = queue.shift();
+            path.push(node.val);
+            for(const child of [node.left, node.right]) {
+                if(child) queue.push(child);
+            };
+        };
+        res.push(path);
+    }
+    return res;
+}
+
+function zigZagTraversal(node) {
+    let res = [];
+    let q = [node];
+    let leftToRight = true;
+    while(q.length) {
+        let path = [];
+        let n = q.length;
+        for(let i = 0; i < n; i++) {
+            let newNode = q.shift();
+            path.push(newNode.val);
+            for(let c of [newNode.left, newNode.right]) {
+                if(c) q.push(c);
+            };
+        };
+        if(!leftToRight) path.reverse();
+        res.push(path);
+        leftToRight = !leftToRight;
+    };
+    return res;
+};
+
+
   
 //pascal triangle
   function generate(numRows, tri=[[1], [1, 1]]) {
