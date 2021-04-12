@@ -628,6 +628,27 @@ function permutations(candidates, target, path, res, idx, sum) {
     }    
 };
 
+//Better combination sum combo sum combination sum of 
+
+function combination_sum(candidates, target) {
+    let res = [];
+    dfs(candidates, target, 0, [], res);
+    return res;
+};
+
+function dfs(candidates, remaining, idx, path, res) {
+    if(remaining < 1) {
+        res.push(Array.from(path));
+        return;
+    };
+    for(let i = idx; i < candidates.length; i++) {
+        let n = candidates[i];
+        if(remaining - n < 0) continue;
+        path.push(n);
+        dfs(candidates, remaining - n, i, path, res);
+        path.pop();
+    }
+}
 
 
 function permutations(s, path, res) {
