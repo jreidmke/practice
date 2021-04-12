@@ -550,6 +550,22 @@ function isPalindrome(s) {
 };
 
 
+//Subsets
+
+function subsets(nums) {
+    let res = [];
+    permutations(nums, [], 0, res);
+    return res;
+};
+
+function permutations(nums, path, idx, res) {
+    res.push(path);
+    for(let i = idx; i < nums.length; i++) {
+        permutations(nums, [...path, nums[i]], i + 1, res);
+    };
+    return;
+};
+
 //Combination sum
 
 function combinationSum(candidates, target) {
