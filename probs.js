@@ -666,6 +666,23 @@ function permutations(s, path, res) {
     };
 };
 
+function subsets(nums) {
+    let res = [];
+    permutations(nums, [], res, 0);
+    return res;
+};
+
+function permutations(nums, path, res, idx) {
+    if(nums.length === idx) {
+        res.push(Array.from(path));
+        return;
+    }
+    permutations(nums, [...path, nums[idx]], res, idx + 1);
+    permutations(nums, [...path], res, idx + 1);
+};
+
+subsets([1, 2, 3])
+
 
 const KEYBOARD = {
     '2': 'abc',
