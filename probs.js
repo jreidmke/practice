@@ -480,6 +480,30 @@ function dfs(node, path, res) {
     };
 };
 
+function ternary_tree_paths(root) {
+    let res = [];
+    dfs(root, [], res);
+    return res;
+};
+
+function dfs(node, path, res) {
+    //push to res;
+    if(node.children.every(c => !c)) {
+        path.push(node.val);
+        res.push(path.join('->'));
+        path.pop();
+        return;
+    };
+    //push to path
+    for(let c of node.children) {
+        if(c) {
+            path.push(c);
+            dfs(node, path, res);
+            path.pop();
+        };
+    };
+};
+
 //Permutations
 
 function permutations(letters) {
@@ -549,6 +573,20 @@ function isPalindrome(s) {
     return true;
 };
 
+function permutations(s, path, res) {
+    //push to res
+    if(!s.length) {
+        res.push(path);
+        return;
+    };
+    //push to path
+    for(let i = 1; i < s.length; i++) {
+        let subStr = s.slice(0, i);
+        if(isPalindrome(subStr)) {
+            permutations(s.slice(i), [...path, subStr], res);    
+        };
+    };
+};
 
 //Subsets
 
