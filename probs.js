@@ -588,6 +588,27 @@ function permutations(s, path, res) {
     };
 };
 
+function combinationSum(candidates, target) {
+    //need sum and idx
+    let res = [];
+    permutations(candidates, target, [], res, 0);
+    return res;
+};
+
+function permutations(nums, remaining, path, res, idx) {
+    if(!remaining) {
+        res.push(Array.from(path));
+        return;
+    };
+    for(let i = idx; i < nums.length; i++) {
+        let n = nums[i];
+        if(remaining - n < 0) continue;
+        path.push(n);
+        permutations(nums, remaining - n, path, res, i);
+        path.pop();
+    };
+};
+
 //Subsets
 
 function subsets(nums) {
