@@ -609,6 +609,24 @@ function permutations(nums, remaining, path, res, idx) {
     };
 };
 
+function subsets(nums) {
+    let res = [];
+    permutations(nums, [], res, 0);
+    return res;
+};
+
+function permutations(nums, path, res, idx) {
+    //push to res
+    if(nums.length === idx) {
+        res.push(Array.from(path));
+        return;
+    };
+    //push to path
+    permutations(nums, [...path, nums[idx]], res, idx + 1);
+    permutations(nums, [...path], res, idx + 1);
+    
+};
+
 //Subsets
 
 function subsets(nums) {
